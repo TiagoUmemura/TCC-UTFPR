@@ -4,9 +4,15 @@ Este capítulo apresenta os conceitos de entropia, authorship, ownership, experi
 \section{Entropia de mudança}
 A entropia de \citeonline{Shannon:2001:MTC:584091.584093} é uma medida para mensurar a incerteza associada a uma variável que quantifica uma informação contida em uma mensagem produzida por um emissor de dados. É utilizada para determinar a quantidade de bits necessários para identificar unicamente um distribuidor de dados, assim quanto maior a entropia maior a incerteza para identifica-lo. A partir disso foi criado a entropia de mudança com o objetivo de calcular o quanto um código está mudando durante um determinado período de tempo. 
 
-A entropia de mudança introduzida por \citeonline{Hassan:2009:PFU:1555001.1555024} considera que o software é o emissor de dados e as modificações realizadas são os dados a serem considerados. É uma medida para mensurar a quantidade de mudanças que ocorreram em um determinado espaço de tempo em um arquivo de um projeto, as mudança consideradas podem ser calculadas de acordo com a quantidade de linhas afetadas em um intervalo de tempo ou número de commits. Hassan também mostrou que alta entropia está relacionada a maior tendência do projeto apresentar falhas.
+A entropia de mudança introduzida por \citeonline{Hassan:2009:PFU:1555001.1555024} considera que o software é o emissor de dados e as modificações realizadas são os dados a serem considerados. É uma medida para mensurar a quantidade de mudanças que ocorreram em um determinado espaço de tempo em um arquivo de um projeto, as mudança consideradas podem ser obtidas a partir da quantidade de linhas modificadas em um intervalo de tempo ou utilizando número de commits. Hassan também mostrou que alta entropia está relacionada a maior tendência do projeto apresentar falhas.
 
 A pesquisa de \citeonline{Canfora2014} relaciona a entropia de mudança com características do software e atividades de desenvolvimento. As características analisadas foram: refatoração, número de commiters, padrões de projetos e nome de tópicos no projeto. Na pesquisa foram analisados projetos nos sistemas ArgoUML, Eclipse-JDT, Mozilla e Samba em um período de cerca de 10 anos e foi mostrado como esses fatores se relacionam com a entropia, que por consequecia impacta a qualidade do software. Os resultados de Canfora indicam que a entropia de mudança varia conforme o número de desenvolvedores aumentam, sendo que diferentes sistemas de controle de versão apresentam variações diferentes na entropia.
+
+A entropia de mudança é definida como:
+
+\begin{equation}
+H(S) = {\sum\limits_{n=1} }\frac{chg(f_i)}{chg(S)}log_2(\frac{chg(f_i)}{chg(S)})
+\end{equation}
 
 
 \section{Authorship e Ownership}
