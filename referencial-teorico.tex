@@ -1,12 +1,10 @@
-\chapter{Referencial Teorócio}
-Este capítulo apresenta os conceitos de entropia, authorship, ownership, experience e qualidade de software que foram estudados em outras pesquisas.
+\chapter{Referencial Teórico}
+Este capítulo apresenta os conceitos de entropia, métricas socias e métricas de processo e indicadores de qualidade.
 
 \section{Entropia de mudança}
 A entropia de \citeonline{Shannon:2001:MTC:584091.584093} é uma medida para mensurar a incerteza associada a uma variável que quantifica uma informação contida em uma mensagem produzida por um emissor de dados. É utilizada para determinar a quantidade de bits necessários para identificar unicamente um distribuidor de dados, assim quanto maior a entropia maior a incerteza para identifica-lo. A partir disso foi criado a entropia de mudança com o objetivo de calcular o quanto um código está mudando durante um determinado período de tempo. 
 
 A entropia de mudança introduzida por \citeonline{Hassan:2009:PFU:1555001.1555024} considera que o software é o emissor de dados e as modificações realizadas são os dados a serem considerados. É uma medida para mensurar a quantidade de mudanças que ocorreram em um determinado espaço de tempo em um arquivo de um projeto, as mudança consideradas podem ser obtidas a partir da quantidade de linhas modificadas em um intervalo de tempo ou utilizando número de commits. Hassan também mostrou que alta entropia está relacionada a maior tendência do projeto apresentar falhas.
-
-A pesquisa de \citeonline{Canfora2014} relaciona a entropia de mudança com características do software e atividades de desenvolvimento. As características analisadas foram: refatoração, número de commiters, padrões de projetos e nome de tópicos no projeto. Na pesquisa foram analisados projetos nos sistemas ArgoUML, Eclipse-JDT, Mozilla e Samba em um período de cerca de 10 anos e foi mostrado como esses fatores se relacionam com a entropia, que por consequecia impacta a qualidade do software. Os resultados de Canfora indicam que a entropia de mudança varia conforme o número de desenvolvedores aumentam, sendo que diferentes sistemas de controle de versão apresentam variações diferentes na entropia.
 
 A entropia de mudança é definida como:
 
@@ -14,8 +12,18 @@ A entropia de mudança é definida como:
 H(S) = {\sum\limits_{n=1} }\frac{chg(f_i)}{chg(S)}log_2(\frac{chg(f_i)}{chg(S)})
 \end{equation}
 
+\subsection{Trabalhos Relacionados}
+A pesquisa de \citeonline{Canfora2014} relaciona a entropia de mudança com características do software e atividades de desenvolvimento. As características analisadas foram: refatoração, número de commiters, padrões de projetos e nome de tópicos no projeto. Na pesquisa foram analisados projetos nos sistemas ArgoUML, Eclipse-JDT, Mozilla e Samba em um período de cerca de 10 anos e foi mostrado como esses fatores se relacionam com a entropia, que por consequecia impacta a qualidade do software. Os resultados de Canfora indicam que a entropia de mudança varia conforme o número de desenvolvedores aumentam, sendo que diferentes sistemas de controle de versão apresentam variações diferentes na entropia.
 
-\section{Authorship e Ownership}
+Nesse estudo, o método para extração de dados é dividido em 6 passos: extração das métricas de mudança do sistema de controle de versão, cálculo da entropia de mudança, identificação das mudanças relacionadas a refatoração, contar número de autores que contribuem para o projeto, identificação dos padrões de projetos e por último é necessário identificar os tópicos que são descritos na mensage de cada commit. 
+
+Após a extração dos dados é feito a análise desses dados. No caso da refatoração, é feito a comparação do valor da entropia antes e depois da refatoração.
+
+\section{Métricas}
+\subsection{Métricas de autoria}
+Esta seção apresenta métricas para calculadas a partir das atividades dos usuário em cada projeto.
+
+\subsubsection{Authorship}
 Authorship é uma medida para mensurar o quanto um desenvolvedor contribuiu para um determinado módulo de software e o ownership é o autor com maior authorship, assim um módulo de software pode apresentar ownership forte ou distribuído entre os contribuidores.
 
 Essas duas medidas podem ser obtidas de várias formas: contando número de arquivos que o desenvolvedor modificou, número de commits e outra possibilidade é contar número de linhas modificadas pelo contribuidor, também chamada de code churn\cite{Munson:1998:CCM:850947.853326}.
@@ -29,10 +37,27 @@ O artigo de \citeonline{Foucault2015} também estuda como o ownership impacta na
 
 Além disso também há pesquisas\cite{Thongtanunam} que analisaram a diferença entre a contribuição de code authoring e reviewing e como a atividade de code reviewing afetam projetos com vários autores que contribuem pouco o que ajuda a compreender melhor o impacto do ownership na qualidade do código.
 
-\section{Experience}
+\subsubsection{Ownership}
+
+\subsubsection{Experience}
 A experience do desenvolvedor influência na produtividade do mesmo e na qualidade do código produzido como foi mostrado em outras pesquisas\cite{Rahman2011}\cite{10.2307/2634607} e quanto mais o desenvolvedor trabalha em diferentes componentes do sistema maior será a sua experience.
 
 Já foi feito pesquisas\cite{Rahman2011} mostrando a relação entre experience e qualidade do código além disso a experience é dividida em dois tipos: a experience especializada e experience geral. A experience especializada é medida considerando o quanto um indivíduo contribui em um determinado arquivo e a experiência geral é medida conseiderando um projeto inteiro.
 
 A experience é a medida para calcular o nível de experiência do contribuidor, essa medida é computada analisando o número de linhas\cite{Rahman2011} deltas comitadas pelo contribuidor em determinado espaço de tempo. Além disso Rahman já mostrou que experiência especializada leva a produzir códigos com menor número de erros e ainda não foi possível concluir que a experiência geral contribui para aumentar a qualidade. No trabalho de Rahman foi correlacionado implicated code com experience.
 
+\subsection{Métricas Sociais}
+\subsubsection{Quantidade de mensagens trocadas}
+
+\subsection{Métricas de processo}
+Esta seção apresenta as métricas extraídas utilizando a ferramenta Change Metrics desenvolvida por Maurício Aniche.
+\subsubsection{Quantidade de autores}
+Esta métrica é utilizada para contar a quantidade de autores diferentes que contribuem com o projeto.
+\subsubsection{Quantidade de commits}
+A quantidade de commits representa o nível de atividade do projeto em termos de número de commits feitos. È calculado o número de commits do projeto em um certo perído de tempo. 
+\subsubsection{Quantidade de defeitos}
+A quantidade de defeitos será calculado com o número de issues do projeto que foram criadas em uma determinada data. Essa data é obtida a partir do GHTorrent no campo created\_at.
+\subsubsection{Idade do repositório}
+A métrica idade do repositório representa o tempo de existência do projeto. O cálculo é utilizado medindo a diferença de tempo entre o primeiro e último commit.
+
+canfora e hassan
