@@ -4,24 +4,13 @@ Nos estudos realizados por Canfora e Hassan não foi analisado os efeitos da ent
 O objetivo é construir uma ferramenta que forneça o valor da entropia de mudança, das métricas de código, de processo e indicadores de qualidade(número de defeitos) dos projetos, permitindo o monitoramento desses projetos. A ferramenta terá quatro módulos que serão apresentados a seguir:
 
 \section{Coleta de dados}
-O módulo de coleta de dados é responsável por....
+O módulo de coleta de dados é responsável pela extração de dados dos projetos do Github. Os dados serão obtidos utilizando o GHTorrent, a ferramenta Change Metrics e Github API V3. 
+
 \section{Cálculo das métricas}
-É o modulo onde será calculado....
+O módulo de cálculo das métricas irá realizar o cálculo após a extração dos dados no módulo de coleta de dados. Nessa etapa o usuário deverá informar quais métricas ele deseja calcular.
+
 \section{Cálculo da entropia}
-Módulo que realiza o cálculo da entropia
+Este módulo que realiza o cálculo da entropia de cada arquivo do projeto no período que o usuário informar. As outras métricas serão calculadas nesse mesmo período. 
+
 \section{Visualização de dados}
-Visualizar os dados gerados pela ferramenta
-
-QP1:Maior entropia tem como consequência débito social?
-
-Abordagem: Utilizando o GHTorrent será extraído o número de commits de um projeto em um determinado período, em seguida será calculado a entropia desse projeto nesse mesmo período.
-
-As informações extraídas do GHTorrent não são o suficientes para calcular as métricas sociais então é necessário utilizar também API do github para coletar outros dados.
-
-Resultados esperados: \\
-
-QP2:Maior entropia degrada a qualidade do projeto?
-
-Abordagem: como será o procedimento para responder a QP2.
-
-Resultados esperados: 
+Este módulo irá mostrar os resultados com gráficos bidimensionais e uma visualização utilizando o método Treemapping, exibindo uma hierarquia de dados utilizando retângulos aninhados. Será feito um gráfico para cada métrica selecionada no módulo de cálculo de métricas, onde o eixo x será o tempo e o eixo f(x) será o valor da métrica. O Treemapping será utilizado para visualizar o valor da entropia em cada arquivo do projeto.
