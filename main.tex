@@ -65,7 +65,7 @@
 
 % Dados do TCC (precisa alterar)
 \author{Tiago Kenji Umemura}  % Seu nome
-\title{Impacto da Entropia em fatores sociais} % Título do trabalho
+\title{Uma ferramenta para monitoramento da entropia de mudança e sua relação com métricas de software} % Título do trabalho
 \titleen{} % Título traduzido para inglês
 \advisor{Prof. Dr. Igor Scaliante Wiese} % Nome do orientador. Lembre-se de prefixar com "Prof. Dr.", "Profª. Drª.", "Prof. Me." ou "Profª. Me."}
 % \coadvisor{} % Nome do coorientador, caso exista. Caso não exista, comente a linha.
@@ -87,12 +87,12 @@
 \begin{resumo}
 
 % TODO: se possível, escreva um resumo estruturado. Para TCC 1, o resumo estruturado teria os seguintes elementos:
-A entropia de mudança é uma medida para indicar o quanto um software sofre alterações em um determinado período de tempo e estudos mostraram que o aumento da entropia pode causar desordem no processo de desenvolvimento podendo levar ao aumento no número de defeitos do software. Nesse contexto, é importante observar que as pessoas fazem parte do processo de desenvolvimento do software assim os fatores sociais podem estar relacionados com a entropia.
+A entropia de mudança é uma medida para indicar o quanto um software sofre alterações em um determinado período de tempo. Estudos mostraram que o aumento da entropia pode causar desordem no processo de desenvolvimento podendo levar ao aumento no número de defeitos do software. Nesse contexto, é importante observar que as pessoas fazem parte do processo de desenvolvimento do software e portanto fatores sociais são importantes para analisar as atividades de um projeto.
 
-\textbf{Contexto:} A pesquisa será realizada utilizando os repositórios do sistema de controle de versões Git.\\
- \textbf{Objetivo:} Identificar quais fatores sociais tem relação com a entropia e se existe impacto na qualidade do software. \\
- \textbf{Método:} A entropia e os fatores sociais serão calculados utilizando dados extraídos da base de dados GHTorrent, API Github e a ferramenta change-metrics.\\
- \textbf{Resultados esperados:} É esperado que a entropia esteja relacionada com os aspectos sociais.
+\textbf{Contexto:} A pesquisa será realizada utilizando os repositórios do sistema de controle de versões Git e projetos hospedados no Github.\\
+\textbf{Objetivo:} Implementar uma ferramenta que possibilite o monitoramento da entropia e das métricas de softwares de projetos armazenados no Github para ajudar os desenvolvedores no gerenciamentos de projetos. \\
+\textbf{Método:} A entropia e as métricas de software serão calculados utilizando dados extraídos da base de dados GHTorrent, API Github e a ferramenta Change-Metrics. A entropia e as métricas sociais serão calculadas utilizando os dados extraídos do GHTorrent e as métricas de processo serão obtidas através da ferramenta Change-Metrics\\
+\textbf{Resultados esperados:} É esperado que a ferramenta ajude os desenvolvedores a gerenciar melhor os projetos oferecendo relatórios estatísticos e visualizações da relação da entropia com as métricas sociais, de processo e de autoria.
 % ou, para TCC 2:
 % \textbf{Contexto:} \\
 % \textbf{Objetivo:} \\
@@ -101,7 +101,7 @@ A entropia de mudança é uma medida para indicar o quanto um software sofre alt
 % \textbf{Conclusões:}
 
 % Palavras-chaves, separadas por ponto (tente não definir mais do que cinco)
-\palavraschaves{Entropia. Fatores Sociais. Qualidade. Defeitos.}
+\palavraschaves{Entropia. Fatores Sociais. Defeitos.}
 \end{resumo}
 
 %quais fatores tem incluencia na entropia (main quest)

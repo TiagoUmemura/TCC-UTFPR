@@ -1,49 +1,50 @@
 \chapter{Referencial Teórico}
-Este capítulo apresenta os conceitos de entropia, métricas socias e métricas de processo e indicadores de qualidade.
+Este capítulo apresenta os conceitos de entropia, métricas socias e métricas de processo.
 
 \section{Entropia de mudança}
-A entropia de \citeonline{Shannon:2001:MTC:584091.584093} é uma medida para mensurar a incerteza associada a uma variável que quantifica uma informação contida em uma mensagem produzida por um emissor de dados. É utilizada para determinar a quantidade de bits necessários para identificar unicamente um distribuidor de dados, assim quanto maior a entropia maior a incerteza para identifica-lo. A partir disso foi criado a entropia de mudança com o objetivo de calcular o quanto um código está mudando durante um determinado período de tempo. 
+A entropia de \citeonline{Shannon:2001:MTC:584091.584093} é uma medida para mensurar a incerteza associada a uma variável que quantifica uma informação contida em uma mensagem produzida por um emissor de dados. A partir dessa definição foi criado o conceito de entropia de mudança que tem como objetivo indicar o quanto um código está mudando durante um determinado período de tempo. 
 
-A entropia de mudança introduzida por \citeonline{Hassan:2009:PFU:1555001.1555024} considera que o software é o emissor de dados e as modificações realizadas são os dados a serem considerados. É uma medida para mensurar a quantidade de mudanças que ocorreram em um determinado espaço de tempo em um arquivo de um projeto, as mudança consideradas podem ser obtidas a partir da quantidade de linhas modificadas em um intervalo de tempo ou utilizando número de commits. Hassan também mostrou que alta entropia está relacionada a maior tendência do projeto apresentar falhas.
+Na entropia de mudança o software é considerado o emissor de dados e as modificações realizadas são os dados de entrada. A entropia é uma medida para mensurar a quantidade de mudanças que ocorreram em um determinado espaço de tempo em um arquivo de um projeto. As mudanças consideradas podem ser obtidas a partir da quantidade de linhas modificadas em um intervalo de tempo ou utilizando número de \textit{commits}.
 
-A entropia de mudança é definida como:
+A entropia de mudança é definida como \cite{Hassan:2009:PFU:1555001.1555024}:
 
 \begin{equation}
 H(S) = {\sum\limits_{n=1} }\frac{chg(f_i)}{chg(S)}log_2(\frac{chg(f_i)}{chg(S)})
 \end{equation}
 
+A figura 2.1 mostra um exemplo do cálculo da entropia dos arquivos de um sistema\cite{Hassan:2009:PFU:1555001.1555024}. Nesse exemplo é considerado os arquivos A, B, C e D de um sistema dado um período de tempo qualquer e as estrelas indicam quando ocorreu uma mudança no arquivo.
+
+\begin{figure}[h]
+	\captionsetup{justification=centering}
+	\includegraphics[width=\linewidth]{entropiamudanca.png}
+	\caption{Exemplo de cálculo de entropia de mudança por arquivo.}
+	\label{figura:entropiaimagem}
+\end{figure}
+
+Para cada arquivo no sistema, é feito a contagem de quantas ele foi modificado em um período e depois é dividido pelo total de mudanças que ocorreram nesse mesmo período considerando todos os arquivos. Por exemplo, como ocorreram dez mudanças no período selecionado e uma mudança no arquivo A nesse mesmo paríodo então a entropia de mudança para esse arquivo é 0,1.
+
 \subsection{Trabalhos Relacionados}
-No trabalho de \citeonline{Hassan:2009:PFU:1555001.1555024} foi introduzido o conceito de entropia de mudança do software e foi feito um modelo básico de mudança de código(Basic Code Change Model - BCC) para mensurar a complexidade de um processo de mudança.
+No trabalho de \citeonline{Hassan:2009:PFU:1555001.1555024} foi introduzido o conceito de entropia de mudança do software e foi feito um modelo básico de mudança de código(BCC - \textit{Basic Code Change Model}) para mensurar a complexidade de um processo de mudança.
 
-No modelo básico de mudança de código é utilizado arquivos como unidade de código para mensurar a complexidade de código, o intervalo de tempo para o cálculo da entropia é fixo e é considerado que os arquivos do projeto sejam sempre os mesmos. Para eliminar a limitação do tempo e a limitação alteração no número arquivos é utilizado o modelo extendido de mudança de código(ECC).
+No modelo básico de mudança de código são utilizado arquivos como unidade de código para mensurar a complexidade de código, o intervalo de tempo para o cálculo da entropia é fixo e é considerado que os arquivos do projeto sejam sempre os mesmos. Para eliminar a limitação do tempo e a limitação alteração no número arquivos é utilizado o modelo extendido de mudança de código(ECC).
 
-No ECC o histórico de mudanças é dividido em períodos de tamanhos iguais. Essa divisão pode ser feita com base em diferentes critérios: com base no tempo, no número de modificações ou em períodos onde ocorrem mais modificações(burst based period). A entropia será calculada com base no número de modificações que ocorreram no período definido.
+No ECC o histórico de mudanças é dividido em períodos de tamanhos iguais. Essa divisão pode ser feita com base em diferentes critérios: com base no tempo, no número de modificações ou em períodos onde ocorrem mais modificações(\textit{Burst Based Period}). A entropia será calculada com base no número de modificações que ocorreram no período definido.
 
 \citeonline{Hassan:2009:PFU:1555001.1555024} aplicou o modelo ECC para 6 projetos: NetBSD, FreeBSD, OpenBSD, Postgres, KDE e KOffice. Nesse estudo foi comparado modelos de predição de defeitos baseados na entropia, modelo baseados em defeitos anteriores e modelo baseado em modificações anteriores.
 
-Os resultados indicam que modelos baseados na métrica de entropia tem o desempenho igual ou superior aos modelos baseados em modificações anteiores e baseados em defeitos anteiores.
+Os resultados indicam que modelos baseados na métrica de entropia tem o desempenho igual ou superior aos modelos baseados em modificações anteriores e baseados em defeitos anteriores.
 
-A pesquisa de \citeonline{Canfora2014} relaciona a entropia de mudança com características do software e atividades de desenvolvimento. As características analisadas foram: refatoração, número de commiters, padrões de projetos e nome de tópicos no projeto. Na pesquisa foram analisados projetos nos sistemas ArgoUML, Eclipse-JDT, Mozilla e Samba em um período de cerca de 10 anos e foi mostrado como esses fatores se relacionam com a entropia, que por consequencia impacta a qualidade do software.
+A pesquisa de \citeonline{Canfora2014} relaciona a entropia de mudança com características do software e atividades de desenvolvimento. As características analisadas foram: refatoração, número de commiters, padrões de projetos e nome de tópicos no projeto. Na pesquisa foram analisados os projetos ArgoUML, Eclipse-JDT, Mozilla e Samba em um período de cerca de 10 anos.
 
-Nesse estudo, o método para extração de dados é dividido em 6 passos: extração das métricas de mudança do sistema de controle de versão, cálculo da entropia de mudança, identificação das mudanças relacionadas a refatoração, contar número de autores que contribuem para o projeto, identificação dos padrões de projetos e por último é necessário identificar os tópicos que são descritos na mensagem de cada commit. 
+O método para extração de dados foi dividido em 6 passos: extração das métricas de mudança do sistema de controle de versão, cálculo da entropia de mudança, identificação das mudanças relacionadas a refatoração, contagem número de autores que contribuem para o projeto, identificação dos padrões de projetos e por último foi necessário identificar os tópicos que são descritos na mensagem de cada \textit{commit}. 
 
-Após a extração dos dados é feito a análise desses dados para responder cinco questões de pesquisa: Como a refatoração afeta a entropia de mudança(RQ1), como a mudança de entropia está relacionada ao número de contribuidores de um arquivo(RQ2), como a entropia de mudança varia entre classes que participam ou não dos padrões de projetos(RQ3), como a mudança de entropia se relaciona com os tópicos descritos na mensagem do commit(RQ4) e como todos os fatores descritos nas questões de pesquisa anteriores se relacionam com a entropia de mudança(RQ5). 
-
-Para responder a RQ1, é feito a comparação do valor da entropia antes e depois da refatoração. 
-
-Para RQ2 é utilizado boxplots onde é contado o número cumulativo de desenvolvedores que, até aquela mudança, tenham alterado o arquivo após isso é feita a correlação entre a mudança de entropia observada em um arquivo para cada conjunto de mudança e o número de desenvolvedores que modificaram o arquivo até aquele conjunto de mudança, considerando todos os arquivos para todos os conjuntos de mudança.
-
-Na RQ3 é utilizado teste de Mann-Whitney e Cliff's delta para comparar mudanças de entropia para classes que participam ou não de padrões de projeto. Então é feito o teste de Kruskal-Wallis para checar se diferentes tipos de padrões de projeto exibem valores diferentes de entropia.
-
-Na RQ4, após classificar o conjunto de mudanças de acordo com os tópicos da mensagem de commit, é comparado a entropia de mudança pertencente a diferentes tópicos utilizando o teste de Kruskal-Wallis.
-
-A RQ5 tem como objetivo analizar a relação entre os diferentes fatores descritos nas questões de pesquisa anteriores e como esses fatores afetam a entropia de mudança. Para responder essa questão foi utilizado Kruskal-Wallis e ANOVA. 
-
-Os resultados de Canfora indicam que: a entropia de mudança diminui de forma significante após uma atividade de refatoração(RQ1), o valor da entropia é mais alto para arquivos com maior número de contribuidores(RQ2), classes que participam de diferentes padrões de projetos exibem valores diferentes de entropia(RQ3), mudanças classificadas em diferentes tópicos exibem valores de entropia diferentes(RQ4) e há maior relação entre o valor da entropia, tópicos de mudança e número de desenvolvedores que modificam um arquivo(RQ5). 
+Os resultados de Canfora indicam que: a entropia de mudança diminui de forma significante após uma atividade de refatoração, o valor da entropia é mais alto para arquivos com maior número de contribuidores, classes que participam de diferentes padrões de projetos exibem valores diferentes de entropia, mudanças classificadas em diferentes tópicos exibem valores de entropia diferentes e há maior relação entre o valor da entropia, tópicos de mudança e número de desenvolvedores que modificam um arquivo. 
 
 \section{Métricas}
+Métricas de software são medidas para mensurar características presentes no desenvolvimento de software e servem para auxiliar na tomada de decisões durante o desenvolvimento do projeto.
+
 \subsection{Métricas de autoria}
-Esta seção apresenta métricas para calculadas a partir das atividades dos usuário em cada projeto.
+Esta seção apresenta métricas calculadas a partir das atividades dos usuário em cada projeto.
 
 \subsubsection{Authorship}
 Authorship é uma medida para mensurar o quanto um desenvolvedor contribuiu para um determinado módulo de software.
@@ -65,10 +66,15 @@ A experience é a medida para calcular o nível de experiência do contribuidor,
 Na pesquisa de Rahman\citeonline{Rahman2011} a experiencia é dividida em dois tipos: a experience especializada e experience geral. A experience especializada é medida considerando o quanto um indivíduo contribui em um determinado arquivo e a experiência geral é medida conseiderando um projeto inteiro.
 
 \subsection{Métricas Sociais}
-\subsubsection{Quantidade de mensagens trocadas}
+\subsubsection{Stars}
+As Stars indicam o número de estrelas em um projeto. Estas indicam o nível de interesse da comunidade no projeto, ou seja, quanto maior número de Stars maior o interesse.
+
+\subsubsection{Comentários em Pull Requests}
+Essa métrica representa a quantidade de comentários nos Pull Requests já fechados. 
 
 \subsection{Métricas de processo}
-Esta seção apresenta as métricas extraídas utilizando a ferramenta Change Metrics desenvolvida por Maurício Aniche.
+As métricas de processo são métricas para mensurar as características relacionadas aos artefatos produzidos durante o desenvolvimento do projeto.
+
 \subsubsection{Quantidade de autores}
 Esta métrica é utilizada para contar a quantidade de autores diferentes que contribuem com o projeto.
 \subsubsection{Quantidade de commits}
@@ -77,3 +83,17 @@ A quantidade de commits representa o nível de atividade do projeto em termos de
 A quantidade de defeitos será calculado com o número de issues do projeto que foram criadas em uma determinada data. Essa data é obtida a partir do GHTorrent no campo created\_at.
 \subsubsection{Idade do repositório}
 A métrica idade do repositório representa o tempo de existência do projeto. O cálculo é utilizado medindo a diferença de tempo entre o primeiro e último commit.
+\subsubsection{Quantidade de linhas removidas}
+Essa medida representa a quantidade de linhas removidas de um arquivo até o momento.
+\subsubsection{Quantidade de linhas adicionadas}
+Essa medida representa a quantidade de linhas adicionadas de um arquivo até o momento.
+\subsubsection{Quantidade de refatorações}
+Essa medida representa a quantidade de refatorações ocorridas até o momento, se a refatoração é citada no commit.
+\subsubsection{Code Churn}
+A métrica Code Churn representa a soma de todas as linhas de código removidas e adicionas no arquivo.
+\subsubsection{Max Change Set}
+A métrica Max Change Set representa o número máximo de arquivos que foram alterados junto com o arquivo em questão.
+\subsubsection{Average Change Set}
+As métricas Average Change Set representa a média de número de arquivos alterados juntos.
+
+
