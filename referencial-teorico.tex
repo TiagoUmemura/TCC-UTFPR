@@ -1,5 +1,5 @@
 \chapter{Referencial Teórico}
-Este capítulo apresenta os conceitos de entropia, métricas socias, métricas de autoria e métricas de processo.
+Este capítulo apresenta os conceitos de entropia, métricas sociais, métricas de autoria e métricas de processo.
 
 \section{Entropia de mudança}
 A entropia de \citeonline{Shannon:2001:MTC:584091.584093} é uma medida para mensurar a incerteza associada a uma variável que quantifica uma informação contida em uma mensagem produzida por um emissor de dados. A partir dessa definição foi criado o conceito de entropia de mudança que tem como objetivo indicar o quanto um código está mudando durante um determinado período de tempo. 
@@ -17,16 +17,16 @@ A figura 2.1 mostra um exemplo do cálculo da entropia dos arquivos de um sistem
 \begin{figure}[h]
 	\captionsetup{justification=centering}
 	\includegraphics[width=\linewidth]{entropiamudanca.png}
-	\caption{Exemplo de cálculo de entropia de mudança por arquivo \cite{Hassan:2009:PFU:1555001.1555024}.}
+	\caption{Exemplo de cálculo da entropia de mudança por arquivo \cite{Hassan:2009:PFU:1555001.1555024}.}
 	\label{figura:entropiaimagem}
 \end{figure}
 
-Para cada arquivo no sistema, é feito a contagem de quantas vezes ele foi modificado em um período e depois é dividido pelo total de mudanças que ocorreram nesse mesmo período considerando todos os arquivos. Por exemplo, na figura 2.1 como ocorreram dez mudanças no período selecionado e uma mudança no arquivo A nesse mesmo paríodo então a entropia de mudança para esse arquivo é 0,1.
+Para cada arquivo no sistema, é feito a contagem de quantas vezes ele foi modificado em um período e depois é dividido pelo total de mudanças que ocorreram nesse mesmo período considerando todos os arquivos. Por exemplo, na figura 2.1 como ocorreram dez mudanças no período selecionado e uma mudança no arquivo A nesse mesmo período então a entropia de mudança para esse arquivo é 0,1.
 
 \subsection{Trabalhos Relacionados}
 No trabalho de \citeonline{Hassan:2009:PFU:1555001.1555024} foi introduzido o conceito de entropia de mudança do software e foi feito um modelo básico de mudança de código (BCC - \textit{Basic Code Change Model}) para mensurar a complexidade de mudança.
 
-No modelo básico de mudança de código são utilizados arquivos como unidade de código para mensurar a complexidade de código, o intervalo de tempo para o cálculo da entropia é fixo e é considerado que os arquivos do projeto sejam sempre os mesmos. Para eliminar a limitação do tempo e a limitação alteração no número arquivos é utilizado o modelo extendido de mudança de código (ECC).
+No modelo básico de mudança de código são utilizados arquivos como unidade de código para mensurar a complexidade de código, o intervalo de tempo para o cálculo da entropia é fixo e é considerado que os arquivos do projeto sejam sempre os mesmos. Para eliminar a limitação do tempo e a limitação alteração no número arquivos é utilizado o modelo estendido de mudança de código (ECC).
 
 No ECC o histórico de mudanças é dividido em períodos de tamanhos iguais. Essa divisão pode ser feita com base em diferentes critérios: com base no tempo, no número de modificações ou em períodos onde ocorrem mais modificações (\textit{Burst Based Period}). A entropia será calculada com base no número de modificações que ocorreram no período definido.
 
@@ -51,9 +51,9 @@ Esta seção apresenta métricas calculadas a partir das contribuições dos usu
 \subsubsection{\textit{Authorship}}
 Authorship é uma medida para mensurar o quanto um desenvolvedor contribuiu para um determinado módulo de software.
 
-Essa medida pode ser obtida de várias formas: contando número de arquivos que o desenvolvedor modificou, número de commits e outra possibilidade é contar número de linhas modificadas pelo contribuidor, também chamada de code churn\cite{Munson:1998:CCM:850947.853326}.
+Essa medida pode ser obtida de várias formas: contando número de arquivos que o desenvolvedor modificou, número de commits e outra possibilidade é contar número de linhas modificadas pelo contribuidor, também chamada de \textit{Code Churn}\cite{Munson:1998:CCM:850947.853326}.
 
-Na pesquisa realizada por \citeonline{Rahman2011} o authorship é calculado utilizando o número de linhas modificadas no código pelo desenvolvedor dividido pelo número total de linhas do arquivo, e o autor com a maior contribuição é denomidado ownership. Também é definido implicated code, que é o código modificado quando é corrigido um determinado erro no módulo de software. O trabalho de Rahman investiga a relação entre ownership, authorship e experience com implicated code. Para cada linha de código modificado é utilizado o comando blame para identificar o autor responsável por essa mudança. O resultado fornece evidências indicando que implicated code tende a ser mais frequentemente gerado por poucos autores, vários fragmentos de códigos modificados tem apenas um único autor.
+Na pesquisa realizada por \citeonline{Rahman2011} o authorship é calculado utilizando o número de linhas modificadas no código pelo desenvolvedor dividido pelo número total de linhas do arquivo, e o autor com a maior contribuição é denominado \textit{ownership}. Também é definido implicated code, que é o código modificado quando é corrigido um determinado erro no módulo de software. O trabalho de Rahman investiga a relação entre ownership, authorship e experience com implicated code. Para cada linha de código modificado é utilizado o comando blame para identificar o autor responsável por essa mudança. O resultado fornece evidências indicando que implicated code tende a ser mais frequentemente gerado por poucos autores, vários fragmentos de códigos modificados tem apenas um único autor.
 
 \subsubsection{\textit{Ownership}}
 No trabalho de \citeonline{Greiler} o Ownership é medido considerando número de contribuidores de um arquivo e também é verificado se existe um contribuidor principal, nesse caso a medida foi calculada com base no número de commits do autor em relação ao total de commits para aquele componente.
@@ -65,7 +65,7 @@ A métrica social ownership será usada para se referir ao authorship do desenvo
 \subsubsection{Experiência}
 A experiência é a medida para calcular o nível de experiência do contribuidor, essa medida é computada analisando o número de linhas \cite{Rahman2011} deltas comitadas pelo contribuidor em determinado espaço de tempo.
 
-Na pesquisa de \citeonline{Rahman2011} a experiencia é dividida em dois tipos: a experience especializada e experience geral. A experience especializada é medida considerando o quanto um indivíduo contribui em um determinado arquivo e a experiência geral é medida conseiderando um projeto inteiro.
+Na pesquisa de \citeonline{Rahman2011} a experiência é dividida em dois tipos: a experiência especializada e experiência geral. A experiência especializada é medida considerando o quanto um indivíduo contribui em um determinado arquivo e a experiência geral é medida considerando um projeto inteiro.
 
 \subsection{Métricas Sociais}
 Esta seção apresenta métricas calculadas a partir da comunicação entre os desenvolvedores a partir das issues e de Pull Requests. As métricas são descritas na tabela 2.1.
@@ -85,7 +85,7 @@ Comentários em Pull Request fechados & Representa o número total de comentári
 \end{table}
 
 \subsection{Métricas de processo}
-As métricas de processo são métricas para mensurar as características relacionadas aos artefatos produzidos durante o desenvolvimento do projeto. As métricas de processo serão descrita na tabela 2.1 e serão calculadas utilizando a ferramenta Change Metrics:
+As métricas de processo são métricas para mensurar as características relacionadas aos artefatos produzidos durante o desenvolvimento do projeto. As métricas de processo serão descrita na tabela 2.1 e serão calculadas utilizando a ferramenta \textit{Change Metrics}:
 
 \begin{table}[]
 \centering
@@ -94,7 +94,7 @@ As métricas de processo são métricas para mensurar as características relaci
 \begin{tabular}{|p{3cm}|p{12cm}|}
 \hline
 Nome da métrica                  & Descrição                                                                                                                                                                         \\ \hline
-Quantidade de commits            & A quantidade de commits representa o nível de atividade do projeto em termos de número de commits feitos. È calculado o número de commits do projeto em um certo perído de tempo. \\ \hline
+Quantidade de commits            & A quantidade de commits representa o nível de atividade do projeto em termos de número de commits feitos. É calculado o número de commits do projeto em um certo perído de tempo. \\ \hline
 Quantidade de defeitos           & A quantidade de defeitos será calculado com o número de issues do projeto que foram criadas em uma determinada data.                                                              \\ \hline
 Idade do arquivo             & A métrica idade do arquivo representa o tempo de existência do arquivo. O cálculo é utilizado medindo a diferença de tempo entre o primeiro e último commit.                  \\ \hline
 Quantidade de linhas removidas   & Essa medida representa a quantidade de linhas removidas de um arquivo até o momento.                                                                                              \\ \hline

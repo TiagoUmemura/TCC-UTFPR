@@ -52,11 +52,11 @@ Average Change set                  & Calculado utilizando a ferramenta Change M
 \end{table}
 
 \section{Gerar relatório de análise estatística}
-Como foi feito na pesquisa de \citeonline{Canfora2014}, para analisar a relação da entropia e as métricas de software serão utilizados os métodos estatísticos de \textit{Wilcoxon}, \textit{ANOVA} e \textit{Cliff's Delta}, onde todos os testes serão feitos no ambiente estístico R com nível de significância de 95\%.
+Como foi feito na pesquisa de \citeonline{Canfora2014}, para analisar a relação da entropia e as métricas de software serão utilizados os métodos estatísticos de \textit{Wilcoxon}, \textit{ANOVA} e \textit{Cliff's Delta}, onde todos os testes serão feitos no ambiente estatístico R com nível de significância de 95\%.
 
-O teste de \textit{Wilcoxon} pareado é um método não-paramétrico para comparação de duas amostras com o objetivo de verificar se existem diferenças significativas entre elas. E para mensurar a diferença entre as amostras é utilizado o \textit{Cliff's Delta}, uma medida de tamanho de efeito não-paramétrico, por exemplo, pode ser utilizada para mensurar a diferença no valor da entropia de mudança antes e depois da refatoração.
+O teste de \textit{Wilcoxon} pareado é um método não paramétrico para comparação de duas amostras com o objetivo de verificar se existem diferenças significativas entre elas. E para mensurar a diferença entre as amostras é utilizado o \textit{Cliff's Delta}, uma medida de tamanho de efeito não paramétrico, por exemplo, pode ser utilizada para mensurar a diferença no valor da entropia de mudança antes e depois da refatoração.
 
-O \textit{ANOVA} (Análise de Variância) é usada para verificar se a média de duas ou mais populações são iguais e determina se as diferenças entre as médias amostrais sugerem diferenças significativas entre as médias das populações ou se essas diferenças decorrem apenas da variabilidade ímplicita de cada amostra. O método \textit{ANOVA} irá ser utilizado para analisar a interação entre a entropia de mudança e outras métricas de software. 
+O \textit{ANOVA} (Análise de Variância) é usada para verificar se a média de duas ou mais populações são iguais e determina se as diferenças entre as médias amostrais sugerem diferenças significativas entre as médias das populações ou se essas diferenças decorrem apenas da variabilidade implícita de cada amostra. O método \textit{ANOVA} irá ser utilizado para analisar a interação entre a entropia de mudança e outras métricas de software. 
 
 Após a análise estatísticas será gerado um relatório informando o usuário identificando quais métricas apresentam maior relação com a entropia e quais arquivos possuem maior entropia.
 
