@@ -1,27 +1,34 @@
 \chapter{Proposta}
-Nos estudos realizados por \citeonline{Canfora2014} e \citeonline{Hassan:2009:PFU:1555001.1555024} foram analisados a relação da entropia de mudança com a qualidade do projeto e algumas métricas de software, como por exemplo, número de contribuidores, no entanto, várias métricas não foram analisadas nesses estudos e não há uma ferramenta que monitore a entropia, métricas sociais, de autoria e de processo.
+Nos estudos realizados por \citeonline{Hassan:2009:PFU:1555001.1555024} e \citeonline{Canfora2014} foram analisados a relação da entropia de mudança com a qualidade do projeto e algumas métricas de software, como por exemplo, número de contribuidores, no entanto, não há uma ferramenta que monitore a entropia e a relação com métricas sociais, de autoria e de processo.
 
-Portanto o objetivo é implementar uma ferramenta que monitore o valor da entropia de mudança e sua relação com as métricas sociais, de autoria e de processo dos projetos. A ferramenta terá seis módulos que serão apresentados a seguir:
+Portanto o objetivo deste trabalho é implementar uma ferramenta que monitore o valor da entropia de mudança e sua relação com as métricas sociais, de autoria e de processo dos projetos. A ferramenta terá seis módulos que serão apresentados na figura 3.1 e as funcionalidades são apresentadas na figura 3.2:
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\captionsetup{justification=centering}
 	\includegraphics[width=\linewidth]{fluxogramaTCC.png}
 	\caption{Fluxograma do funcionamento da ferramenta}
 	\label{figura:fluxogramaimagem}
 \end{figure}
 
-\section{Coletar dados}
-O módulo de coleta de dados é responsável pela extração de dados dos projetos do Github e Git que serão persistidos em um banco de dados local. Os dados serão obtidos utilizando o GHTorrent\footnote{GHTorrent é uma ferramenta que monitora os eventos públicos do Github, para cada evento é armazenado o seu conteúdo e as resposta JSON são armazenadas em um banco de dados MongoDB e também no MySQL} e a API Github.
+\begin{figure}[H]
+	\captionsetup{justification=centering}
+	\includegraphics[width=\linewidth]{DiagramaDeCasoDeUso.png}
+	\caption{Diagrama de caso de uso da ferramenta}
+	\label{figura:diagramacaso}
+\end{figure}
 
-Utilizando a base de dados MySQL do GHTorrent será extraído dados sobre os \textit{commits}, \textit{issues}, \textit{Pull Requests} e contribuidores do projeto. Além disso, será feito o clone das versões do projeto selecionado utilizando o comando \textit{git log}, \textit{git clone} e \textit{git reset}. 
+\section{Coletar dados}
+O módulo de coleta de dados é responsável pela extração de dados dos projetos do Github e Git que serão persistidos em um banco de dados local. Os dados serão obtidos utilizando o GHTorrent\footnote{GHTorrent é uma ferramenta que monitora os eventos públicos do Github, para cada evento é armazenado o seu conteúdo e as resposta JSON são armazenadas em um banco de dados MongoDB e também no MySQL} e a API Github\footnote{API Github permite coletar dados sobre os repositórios do Github, onde os dados são recebidos no formato JSON. A documentação da API pode ser encontrada no endereço: https://developer.github.com/v3/}.
+
+Utilizando a base de dados MySQL do GHTorrent será extraído dados sobre os \textit{commits}, \textit{issues}, \textit{Pull Requests} e contribuidores do projeto. Além disso, será feito o clone das versões dos projetos selecionados utilizando o comando \textit{git log}, \textit{git clone} e \textit{git reset}. 
 
 \section{Calcular entropia}
-Este módulo que realiza o cálculo da entropia de cada arquivo do projeto no período que o usuário informar. O valor da entropia será determinado utilizando como medida o número de commits que o arquivo teve durante um período de tempo selecionado pelo usuário. Para o cálculo da entropia é necessário medir a diferença da métrica Revisões(número total de commits) gerada pela ferramenta Change Metrics entre duas versões diferentes do projeto e assim obter o número de commits que cada arquivo teve entre uma versão e outra.
+Este módulo realiza o cálculo da entropia de cada arquivo do projeto no período que o usuário informar. O valor da entropia será determinado utilizando como medida o número de commits que o arquivo teve durante um período de tempo selecionado pelo usuário. Para o cálculo da entropia é necessário medir a diferença entre o número total de commits de duas versões diferentes do projeto, e assim, obter o número de commits que cada arquivo teve entre uma versão e outra.
 
 \section{Calcular métricas}
 O módulo de cálculo das métricas irá realizar o cálculo após a extração dos dados no módulo de coleta de dados. Nessa etapa o usuário deverá informar quais métricas ele deseja calcular e uma data anterior a data atual. O período definido será entre a data atual e a data definida pelo usuário e as métricas serão calculadas de 15 em 15 dias.
 
-Para o cálculo das métrica de processo será utilizada a ferramenta Change Metrics e para executá-la é necessário passar três parâmetros: o projeto git, o arquivo csv onde serão armazenados os dados e tipo do projeto que pode ser \textit{all} ou \textit{single}. O comando para executar a Change Metrics é: java -jar <tool.jar> projeto arquivo.csv single. 
+Para o cálculo das métricas de processo será utilizada a ferramenta Change Metrics. Para executá-la é necessário três parâmetros: o projeto git, o arquivo csv onde serão armazenados os dados e tipo do projeto que pode ser \textit{all} ou \textit{single}. O comando para executar a Change Metrics é: java -jar <tool.jar> projeto arquivo.csv single. 
 
 A forma como as métricas serão calculadas estão descritas na tabela 3.1. 
 
@@ -29,7 +36,7 @@ A forma como as métricas serão calculadas estão descritas na tabela 3.1.
 \centering
 \caption{Tabela de cálculo das métricas}
 \label{cálculometricas}
-\begin{tabular}{|p{3cm}|p{12cm}|}
+\begin{tabular}{|p{4cm}|p{12cm}|}
 \hline
 Métrica                             & Descrição do cálculo                                                                        \\ \hline
 Authorship                          & Média da quantidade de commits considerando todos os contribuidores                         \\ \hline
@@ -39,6 +46,7 @@ Pull Request fechados por arquivo   & Contagem do número de Pull Request fechad
 Pull Request abertos por arquivo    & Contagem do número de Pull Request abertos relacionados a um determinado arquivo            \\ \hline
 Comentários em Pull Request aberto  & Contagem do número de comentários em todos os Pull Request abertos relacionados ao arquivo  \\ \hline
 Comentários em Pull Request fechado & Contagem do número de comentários em todos os Pull Request fechados relacionados ao arquivo \\ \hline
+Média do tempo de vida de \textit{Pull Request} & Será calculado a diferença no tempo entre a abertura e o fechamento do \textit{Pull Request} \\ \hline
 Quantidade de commits               & Calculado utilizando a ferramenta Change Metrics                                        \\ \hline
 Quantidade de defeitos              & Calculado utilizando a ferramenta Change Metrics                                            \\ \hline
 Idade do arquivo                    & Calculado utilizando a ferramenta Change Metrics                                            \\ \hline
@@ -54,16 +62,16 @@ Average Change set                  & Calculado utilizando a ferramenta Change M
 \section{Gerar relatório de análise estatística}
 Como foi feito na pesquisa de \citeonline{Canfora2014}, para analisar a relação da entropia e as métricas de software serão utilizados os métodos estatísticos de \textit{Wilcoxon}, \textit{ANOVA} e \textit{Cliff's Delta}, onde todos os testes serão feitos no ambiente estatístico R com nível de significância de 95\%.
 
-O teste de \textit{Wilcoxon} pareado é um método não paramétrico para comparação de duas amostras com o objetivo de verificar se existem diferenças significativas entre elas. E para mensurar a diferença entre as amostras é utilizado o \textit{Cliff's Delta}, uma medida de tamanho de efeito não paramétrico, por exemplo, pode ser utilizada para mensurar a diferença no valor da entropia de mudança antes e depois da refatoração.
+O teste de \textit{Wilcoxon} é um método não paramétrico para comparação de duas amostras com o objetivo de verificar se existem diferenças significativas entre elas. E para mensurar a diferença entre as amostras é utilizado o \textit{Cliff's Delta}, uma medida de tamanho de efeito não paramétrico, que por exemplo, pode ser utilizada para mensurar a diferença no valor da entropia de mudança entre dois intervalos de tempo.
 
-O \textit{ANOVA} (Análise de Variância) é usada para verificar se a média de duas ou mais populações são iguais e determina se as diferenças entre as médias amostrais sugerem diferenças significativas entre as médias das populações ou se essas diferenças decorrem apenas da variabilidade implícita de cada amostra. O método \textit{ANOVA} irá ser utilizado para analisar a interação entre a entropia de mudança e outras métricas de software. 
+A \textit{ANOVA} (Análise de Variância) é usada para verificar se a média de duas ou mais populações são iguais e determina se as diferenças entre as médias amostrais sugerem diferenças significativas entre as médias das populações ou se essas diferenças decorrem apenas da variabilidade implícita de cada amostra. O método \textit{ANOVA} irá ser utilizado para analisar a interação entre a entropia de mudança e as métricas de software descritas na seção anterior. 
 
-Após a análise estatísticas será gerado um relatório informando o usuário identificando quais métricas apresentam maior relação com a entropia e quais arquivos possuem maior entropia.
+Após a análise estatística, será gerado um relatório para informar o usuário quais métricas apresentam maior relação com a entropia e quais arquivos possuem maior entropia, por exemplo, selecionando os arquivos com valor de entropia maior que a mediana da entropia de todos os arquivos.
 
 \section{Gerar Visualização}
-Este módulo permite o usuário utilizar filtros para escolher quais métricas ele deseja visualizar. Para visualização será utilizado o \textit{Treemapping}, \textit{Heat Map} e gráficos de duas dimensões.
+Este módulo permite o usuário utilizar filtros para escolher quais métricas ele deseja visualizar. Para visualização será utilizado o \textit{Treemapping}, \textit{Heat Map} e séries temporais.
 
-O treemapping é uma forma de visualização de dados de forma hierárquica utilizando retângulos aninhados. Na ferramenta o \textit{Treemapping} será utilizado para visualizar o valor da entropia dos arquivos do projeto, onde cada retângulo representará um arquivo e o tamanho desse retângulo representa o valor da entropia, quanto maior a entropia maior será o retângulo. O usuário poderá escolher qual período de tempo ele deseja visualizar o valor da entropia e também poderá comparar esse valor entre dois peŕiodos diferentes, sendo que o valor da entropia é calculado de 15 em 15 dias.
+O \textit{treemapping} é uma forma de visualização de dados de forma hierárquica utilizando retângulos aninhados. Na ferramenta o \textit{Treemapping} será utilizado para visualizar o valor da entropia dos arquivos do projeto, onde cada retângulo representará um arquivo e o tamanho desse retângulo representa o valor da entropia, quanto maior a entropia maior será o retângulo. O usuário poderá escolher qual período de tempo ele deseja visualizar o valor da entropia e também poderá comparar esse valor entre dois peŕiodos diferentes, sendo que o valor da entropia é calculado de 15 em 15 dias.
 
 \begin{figure}[H]
 	\captionsetup{justification=centering}
@@ -81,7 +89,7 @@ O \textit{Heat Map} é uma representação gráfica que utiliza cores para mostr
 	\label{figura:heatmap}
 \end{figure}
 
-Será utilizado um gráfico de duas dimensões para mostrar a evolução das métricas ao longo do tempo como mostra as figura 3.4. O eixo x do gráfico representa o tempo e o eixo y representa o valor da métricas, sendo que o tempo está dividido a cada 15 dias.
+Será utilizado um gráfico de séries temporais para mostrar a evolução das métricas ao longo do tempo como mostra as figura 3.4. O eixo x do gráfico representa o tempo e o eixo y representa o valor da métricas, sendo que o tempo está dividido a cada 15 dias.
 
 \begin{figure}[H]
 	\captionsetup{justification=centering}
@@ -91,4 +99,34 @@ Será utilizado um gráfico de duas dimensões para mostrar a evolução das mé
 \end{figure}
 
 \section{Avaliar a ferramenta}
-Para a avaliação, a ferramenta será configurada para 10 projetos e serão convidados desenvolvedores para utilizá-la. Os desenvolvedores deverão realizar tarefas sobre as funcionalidades da ferramenta, por exemplo, encontrar o valor da entropia em um determinado período de tempo no arquivo A, e após isso, responderão um questionário sobre a usabilidade da ferramenta. O questionário irá conter questões sobre a visualização de dados e o relatório estatístico para avaliar se a ferramenta auxilia o desenvolvedor na tomada de decisões do projeto.
+Para a avaliação, a ferramenta será configurada para 10 projetos e serão convidados desenvolvedores para utilizá-la, onde os desenvolvedores deverão realizar tarefas sobre as funcionalidades da ferramenta. As tarefas são descritas nos cenários apresentados a seguir:
+
+Cenário 1: O desenvolvedor poderá escolher o período de tempo em que ele deseja analisar o projeto e quais filtros (métricas) ele deseja calcular. Após definir o período e os filtros, será gerado um gráfico de duas dimensões mostrando o comportamento das métricas ao longo do tempo. 
+
+Cenário 2: O desenvolvedor poderá consultar o valor da entropia de cada arquivo após selecionar um período de 15 dias. O valor da entropia será mostrado por meio do \textit{Treemap} do projeto, onde cada retângulo representará um arquivo e o tamanho do retângulo representará o valor da entropia nesse arquivo. Ao clicar no \textit{Treemap} será gerado um relatório que irá conter informações sobre quais arquivo possuem maior entropia e portanto merecem maior atenção do desenvolvedor.
+
+Cenário 3: O desenvolvedor poderá escolher um período (15 dias) e analisar a correlação entre as métricas e entre a entropia e as métricas utilizando o \textit{Heat Map}. Clicando no \textit{Heat Map} será gerado um relatório mostrando quais métricas possuem maior nível de correlação sugerindo que as maiores correlações influenciam no aumento da entropia.
+
+Cenário 4: O desenvolvedor poderá comparar os valores da entropia e das métricas em dois períodos diferentes. Dois \textit{Treemaps} serão apresentados, um para cada período selecionado, para exibir os valores da entropia de cada arquivo do projeto e será apresentado uma tabela com os valores das métricas para cada período selecionado.
+
+Cenário 5: O desenvolvedor ao gerar o \textit{Treemap} de um projeto durante um período poderá ter acesso a mais informações de cada arquivo do projeto. Ao clicar em um dos retângulos que representa um arquivo, o desenvolvedor terá acesso a um relatório com informações sobre quais métricas possuem maior correlação com a entropia daquele arquivo.
+
+Após a realização das tarefas, os desenvolvedores responderão um questionário sobre a usabilidade da ferramenta. O questionário irá conter questões sobre a visualização de dados e o relatório estatístico para avaliar se a ferramenta auxilia o desenvolvedor na tomada de decisões do projeto. O questionário é composto por perguntas abertas e perguntas utilizando a escala Likert:
+
+\begin{enumerate}
+  \item Houve dificuldades para gerar o \textit{Treemap} do valor da entropia de um determinado período? (Escala Likert)
+  
+  \item Houve dificuldade para gerar o \textit{Heat Map}? (Escala Likert)
+  
+  \item Houve dificuldades para gerar os gráficos? (Escala Likert)
+  
+  \item O relatório estatístico sobre o valor da entropia nos arquivos é relevante para o desenvolvimento do projeto?
+  
+  \item A visualização dos valores da entropia de mudança utilizando \textit{Treemapping} é de fácil compreensão? (Escala Likert)
+  
+  \item A visualização de \textit{Heat Map} utilizada para analisar a correlação é de fácil compreensão? (Escala Likert)
+  
+  \item A correlação entre o valor da entropia e os valores das métricas é relevante para o desenvolvimento do projeto?
+  
+  \item Os gráficos de duas dimensões para analisar o histórico dos valores da métrica são importantes para tomar decisões no desenvolvimento do projeto?
+\end{enumerate}

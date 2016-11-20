@@ -43,32 +43,34 @@ Os resultados de Canfora indicam que a entropia de mudança diminui de forma sig
 \section{Métricas}
 Métricas de software são medidas para mensurar características presentes no desenvolvimento de software e servem para auxiliar na tomada de decisões durante o desenvolvimento do projeto \cite{koscianski2007qualidade}. As métricas foram divididas em métricas de autoria, sociais e de processo. 
 
-As métricas de autoria medem a contribuição do desenvolvedor nos projetos, métricas sociais medem a interação entre os desenvolvedores e as métricas de processo mensuram as mudanças que ocorreram em relação aos artefatos criados durante o desenvolvimento do projeto.
+As métricas de autoria medem a contribuição do desenvolvedor nos arquivos do projeto, métricas sociais medem a interação entre os desenvolvedores durante a modificação dos artefatos e as métricas de processo mensuram as mudanças que ocorreram em relação aos artefatos criados durante o desenvolvimento do projeto.
 
 \subsection{Métricas de autoria}
 Esta seção apresenta métricas calculadas a partir das contribuições dos usuários em cada arquivo de um projeto.
 
 \subsubsection{\textit{Authorship}}
-Authorship é uma medida para mensurar o quanto um desenvolvedor contribuiu para um determinado módulo de software.
+\textit{Authorship} é uma medida para mensurar o quanto um desenvolvedor contribuiu para um determinado módulo de software.
 
-Essa medida pode ser obtida de várias formas: contando número de arquivos que o desenvolvedor modificou, número de commits e outra possibilidade é contar número de linhas modificadas pelo contribuidor, também chamada de \textit{Code Churn}\cite{Munson:1998:CCM:850947.853326}.
+Essa medida pode ser obtida de várias formas: contando número de arquivos que o desenvolvedor modificou, número de commits e ou contar número de linhas modificadas pelo contribuidor, também chamada de \textit{Code Churn} \cite{Munson:1998:CCM:850947.853326}.
 
-Na pesquisa realizada por \citeonline{Rahman2011} o authorship é calculado utilizando o número de linhas modificadas no código pelo desenvolvedor dividido pelo número total de linhas do arquivo, e o autor com a maior contribuição é denominado \textit{ownership}. Também é definido implicated code, que é o código modificado quando é corrigido um determinado erro no módulo de software. O trabalho de Rahman investiga a relação entre ownership, authorship e experience com implicated code. Para cada linha de código modificado é utilizado o comando blame para identificar o autor responsável por essa mudança. O resultado fornece evidências indicando que implicated code tende a ser mais frequentemente gerado por poucos autores, vários fragmentos de códigos modificados tem apenas um único autor.
+Na pesquisa realizada por \citeonline{Rahman2011} o \textit{authorship} é calculado utilizando o número de linhas modificadas no código pelo desenvolvedor dividido pelo número total de linhas do arquivo. \textit{Implicated code} indica o número de linhas modificadas para corrigir um determinado erro no módulo de software.
 
 \subsubsection{\textit{Ownership}}
-No trabalho de \citeonline{Greiler} o Ownership é medido considerando número de contribuidores de um arquivo e também é verificado se existe um contribuidor principal, nesse caso a medida foi calculada com base no número de commits do autor em relação ao total de commits para aquele componente.
+No trabalho de \citeonline{Greiler} o \textit{ownership} é medido considerando número de contribuidores de um arquivo e também é verificado se existe um contribuidor principal. Nesse caso a medida foi calculada com base no número de commits do autor em relação ao total de commits para aquele componente.
 
 No artigo de \citeonline{Foucault2015} os contribuidores são classificados como owner, minor e major. Owner é o contribuidor com maior valor de contribuição, minor o desenvolvedor que contribuiu com menos de 5\% e major contribuiu com mais de 5\%.
 
-A métrica social ownership será usada para se referir ao authorship do desenvolvedor que mais contribuiu com o projeto \cite{Thongtanunam}. 
+Considerando os valores de \textit{authorship} de todos os autores de um arquivo do projeto, o maior valor de \textit{authorship} será o valor de \textit{ownership} do arquivo \cite{Foucault2015}. 
 
 \subsubsection{Experiência}
-A experiência é a medida para calcular o nível de experiência do contribuidor, essa medida é computada analisando o número de linhas \cite{Rahman2011} deltas comitadas pelo contribuidor em determinado espaço de tempo.
+Para calcular o nível de experiência do contribuidor é computada o número de linhas deltas comitadas pelo contribuidor em determinado espaço de tempo  \cite{Rahman2011}.
 
 Na pesquisa de \citeonline{Rahman2011} a experiência é dividida em dois tipos: a experiência especializada e experiência geral. A experiência especializada é medida considerando o quanto um indivíduo contribui em um determinado arquivo e a experiência geral é medida considerando um projeto inteiro.
 
 \subsection{Métricas Sociais}
-Esta seção apresenta métricas calculadas a partir da comunicação entre os desenvolvedores a partir das issues e de Pull Requests. As métricas são descritas na tabela 2.1.
+Esta seção apresenta métricas calculadas a partir da comunicação entre os desenvolvedores a partir das \textit{issues} e de \textit{pull requests}. As métricas são descritas na tabela 2.1.
+
+As \textit{issues} são criadas pelos desenvolvedores e tem como objetivo relatar problemas encontrados no projeto. Os \textit{pull requests} são sugestões para resolver uma determinada \textit{issue} e podem assumir dois estados: aberto e fechado. O \textit{pull request} aberto é uma contribuição que está em análise e pode ou não ser aceito e no \textit{pull request} fechado a contribuição foi aceita ou recusada.
 
 \begin{table}[]
 \centering
@@ -77,15 +79,16 @@ Esta seção apresenta métricas calculadas a partir da comunicação entre os d
 \begin{tabular}{|p{3cm}|p{12cm}|}
 \hline
 Métrica                                          & Descrição                                                                                                                              \\ \hline
-Pull Requests fechados por arquivo               & Representa o número total de Pull Request fechados onde determinado arquivo do projeto foi modificado.                                 \\ \hline
-Pull Request abertos por arquivo                 & Representa o número total de Pull Requests abertos onde determinado arquivo do projeto foi modificado.                                 \\ \hline
-Comentários em Pull Request abertos  & Representa o número total de comentários considerando todos os Pull Request abertos até o momento para determinado arquivo do projeto  \\ \hline
-Comentários em Pull Request fechados & Representa o número total de comentários considerando todos os Pull Request fechados até o momento para determinado arquivo do projeto \\ \hline
+Número de \textit{Pull Requests} fechados por arquivo               & Representa o número total de \textit{Pull Request} fechados onde determinado arquivo do projeto foi modificado.                                 \\ \hline
+Número de \textit{Pull Request} abertos por arquivo                 & Representa o número total de \textit{Pull Requests} abertos onde determinado arquivo do projeto foi modificado.                                 \\ \hline
+Número de comentários em \textit{Pull Request} abertos  & Representa o número total de comentários considerando todos os \textit{Pull Request} abertos até o momento para determinado arquivo do projeto  \\ \hline
+Número de comentários em \textit{Pull Request} fechados & Representa o número total de comentários considerando todos os \textit{Pull Request} fechados até o momento para determinado arquivo do projeto \\ \hline
+Média do tempo de vida de \textit{Pull Requests}    & Média do tempo entre a abertura e o fechamento do \textit{Pull Request} \\ \hline
 \end{tabular}
 \end{table}
 
 \subsection{Métricas de processo}
-As métricas de processo são métricas para mensurar as características relacionadas aos artefatos produzidos durante o desenvolvimento do projeto. As métricas de processo serão descrita na tabela 2.1 e serão calculadas utilizando a ferramenta \textit{Change Metrics}:
+As métricas de processo são métricas para mensurar as características relacionadas aos artefatos produzidos durante o desenvolvimento do projeto. As métricas de processo serão descrita na tabela 2.1:
 
 \begin{table}[]
 \centering
@@ -94,14 +97,14 @@ As métricas de processo são métricas para mensurar as características relaci
 \begin{tabular}{|p{3cm}|p{12cm}|}
 \hline
 Nome da métrica                  & Descrição                                                                                                                                                                         \\ \hline
-Quantidade de commits            & A quantidade de commits representa o nível de atividade do projeto em termos de número de commits feitos. É calculado o número de commits do projeto em um certo perído de tempo. \\ \hline
-Quantidade de defeitos           & A quantidade de defeitos será calculado com o número de issues do projeto que foram criadas em uma determinada data.                                                              \\ \hline
-Idade do arquivo             & A métrica idade do arquivo representa o tempo de existência do arquivo. O cálculo é utilizado medindo a diferença de tempo entre o primeiro e último commit.                  \\ \hline
+Quantidade de \textit{commits}            & A quantidade de commits representa o nível de atividade do projeto em termos de número de commits feitos. É calculado o número de commits do projeto em um certo perído de tempo. \\ \hline
+Quantidade de defeitos           & A quantidade de defeitos será calculado com o número de \textit{issues} do projeto que foram criadas em uma determinada data.                                                              \\ \hline
+Idade do arquivo             & A métrica idade do arquivo representa o tempo de existência do arquivo. O cálculo é utilizado medindo a diferença de tempo entre o primeiro e último \textit{commit}.                  \\ \hline
 Quantidade de linhas removidas   & Essa medida representa a quantidade de linhas removidas de um arquivo até o momento.                                                                                              \\ \hline
 Quantidade de linhas adicionadas & Essa medida representa a quantidade de linhas adicionadas de um arquivo até o momento.                                                                                            \\ \hline
-Code Churn                       & A métrica Code Churn representa a soma de todas as linhas de código removidas e adicionas no arquivo.                                                                             \\ \hline
-Quantidade de refatorações       & Essa medida representa a quantidade de refatorações ocorridas até o momento, se a refatoração é citada no commit.                                                                 \\ \hline
-Max Change Set                   & A métrica Max Change Set representa o número máximo de arquivos que foram alterados junto com o arquivo em questão.                                                               \\ \hline
-Average Change Set               & As métricas Average Change Set representa a média de número de arquivos alterados juntos.                                                                                         \\ \hline
+Code Churn                       & A métrica \textit{Code Churn} representa a soma de todas as linhas de código removidas e adicionas no arquivo.                                                                             \\ \hline
+Quantidade de refatorações       & Essa medida representa a quantidade de refatorações ocorridas até o momento, se a refatoração é citada no \textit{commit}.                                                                 \\ \hline
+\textit{Max Change Set}                   & A métrica \textit{Max Change Set} representa o número máximo de arquivos que foram alterados junto com o arquivo em questão.                                                               \\ \hline
+\textit{Average Change Set}               & As métricas \textit{Average Change Set} representa a média de número de arquivos alterados juntos.                                                                                         \\ \hline
 \end{tabular}
 \end{table}
